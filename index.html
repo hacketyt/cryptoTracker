@@ -102,6 +102,7 @@
     let upd;
     let count = 0;
     function fetchApi(coin) {
+        count = 0;
         $.ajax({
             url: `https://api.coinstats.app/public/v1/coins/${coin}?currency=INR`,
             type: "GET",
