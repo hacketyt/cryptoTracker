@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Tracker</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <h1 class="d-flex text-center">Crypt Tracker</h1>
+        </div>
+
+        <div class="row justify-content-center">
+                <h3 class="text-center">:-Reeshu raj</h3>
+        </div>
+
+        <section class="mt-5">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-6">
+                    <select id="coinsSelect" class="form-control">
+                        <option value="bitcoin">Bitcoin</option>
+                        <option value="ethereum">Ethereum</option>
+                        <option value="tether">Tether</option>
+                        <option value="cardano">Cardano</option>
+                        <option value="solana">Solana</option>
+                        <option value="dogecoin">Doge</option>
+
+                    </select>
+                    <button id="submit" class="mt-2 btn btn-primary float-right">Submit</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="mt-4 ">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-6 ">
+                    <div class="row">
+                        <table class="table table-striped table-bordered">
+                            <tr>
+                                <td class="">Name</td>
+                                <td id="name" class=""></td>
+                            </tr>
+                            <tr>
+                                <td class="">Price</td>
+                                <td class="" id="price"></td>
+                            </tr>
+                            <tr>
+                                <td class="">Volume</td>
+                                <td class="" id="volume"></td>
+                            </tr>
+                            <tr>
+                                <td class="">Change (24 Hrs)</td>
+                                <td class="" id="change1d"></td>
+                            </tr>
+                            <tr>
+                                <td class="">Last Refresh</td>
+                                <td class="" id="last"></td>
+                            </tr>
+                            <tr>
+                                <td class="">Refresh in</td>
+                                <td class="" id="refresh"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+<script>
+    const submitBtn = document.querySelector("#submit");
+    submitBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (upd) {
+            clearInterval(upd);
+        }
+        let coin = document.querySelector("#coinsSelect").value;
+        fetchApi(coin);
+    });
+    let upd;
+    let count = 0;
+    function fetchApi(coin) {
+        $.ajax({
+            url: `https://api.coinstats.app/public/v1/coins/${coin}?currency=INR`,
+            type: "GET",
+            async: false,
+            dataType: 'json',
+            success: (data) => {
+                console.log(data.coin);
+                let date = new Date();
+                document.getElementById('name').innerHTML = `<img height="20" src="${data.coin.icon}">&nbsp${data.coin.name} (${data.coin.symbol})`;
+                // document.getElementById('price').innerHTML = '₹'+Math.floor(data.coin.price*100)/100;
+                document.getElementById('price').innerHTML = '₹' + data.coin.price;
+
+                document.getElementById('volume').innerHTML = data.coin.volume;
+                let change1d = document.getElementById('change1d');
+                change1d.innerHTML = `<b>${data.coin.priceChange1d}</b>`;
+                document.getElementById('last').innerHTML = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} &nbsp; ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} `;
+                if (data.coin.priceChange1d >= 0) {
+                    change1d.style.color = "green";
+                } else {
+                    change1d.style.color = "red";
+                }
+            },
+            error: (error) => {
+                console.log(error);
+            }
+
+        });
+        upd = setTimeout(() => {
+            fetchApi(coin);
+            count = 0;
+        }, 30000);
+
+
+    }
+    fetchApi('bitcoin');
+    function counter() {
+        // console.log(count++);
+        setTimeout(() => {
+            document.getElementById('refresh').innerHTML = `${30 - count++} second`;
+            counter();
+        }, 1000);
+    }
+    counter();
+
+
+
+</script>
+
+</html>
