@@ -141,8 +141,11 @@
     function counter() {
         // console.log(count++);
         setTimeout(() => {
-            document.getElementById('refresh').innerHTML = `${30 - count++} second`;
-            counter();
+            if(count<30){
+                document.getElementById('refresh').innerHTML = `${30 - count++} second`;
+                counter();
+            }
+            
         }, 1000);
     }
     counter();
