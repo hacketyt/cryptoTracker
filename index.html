@@ -113,9 +113,10 @@
                 let date = new Date();
                 document.getElementById('name').innerHTML = `<img height="20" src="${data.coin.icon}">&nbsp${data.coin.name} (${data.coin.symbol})`;
                 // document.getElementById('price').innerHTML = '₹'+Math.floor(data.coin.price*100)/100;
-                document.getElementById('price').innerHTML = '₹' + data.coin.price;
+                //added toFixed(3) to round off to 3 decimal places
+                document.getElementById('price').innerHTML = '₹' + data.coin.price.toFixed(3);
 
-                document.getElementById('volume').innerHTML = data.coin.volume;
+                document.getElementById('volume').innerHTML = data.coin.volume.toFixed(3);
                 let change1d = document.getElementById('change1d');
                 change1d.innerHTML = `<b>${data.coin.priceChange1d}</b>`;
                 document.getElementById('last').innerHTML = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} &nbsp; ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} `;
