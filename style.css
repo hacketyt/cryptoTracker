@@ -1,0 +1,101 @@
+*{
+    border:0;
+    outline:0;
+    margin:0;
+    padding: 0;
+    font-family: 'Satoshi', sans-serif;
+    /* font-size: 18px;
+    line-height: 140%; */
+    font-weight: 500;
+}
+
+:root{
+    --purple-light: #D1BFF8;
+    --text-light: #EFE8FF;
+    --purple-muted: #8A7DA6;
+    --box-hover-gradient: linear-gradient(90.84deg, rgba(209, 191, 248, 0) 0%, #463076 100%);
+}
+
+/* bg-gradient */
+body{
+    height: 100vh;
+    width: 100vw;;
+    color: #EFE8FF;
+    background: linear-gradient(180deg, #212121 0%, #322157 100%);
+
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 000;
+    /* user-select: none; */
+}
+.nav{
+    width: 80vw;
+    padding: 24px 0px;
+    align-self: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    position: absolute;
+    top: 0;
+}
+.nav div{
+    display: flex;
+    align-items: center;
+}
+
+.nav img{
+    width: 32px;
+}
+
+.nav-title{
+    font-family: 'Archivo';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 32px;
+    color: var(--purple-light);
+    margin: 0;
+    margin-left: 4px;
+}
+
+#teamBtn{
+    font-family: 'Archivo';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    color: var(--purple-light);
+    background: rgba(209, 191, 248, 0.12);
+    border-radius: 8px;
+    margin: 0;
+    padding: 8px 36px;
+    text-decoration: none;
+}
+
+.main-content{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* media queries */
+@media only screen and (max-width: 450px) {
+.nav{
+    max-width: 100vw;
+    padding: 24px 160px;
+}
+
+.nav img{
+    width: 24px;
+}
+
+
+.nav-title{
+    font-size: 24px;
+}
+}
