@@ -115,23 +115,6 @@ body{
     cursor: pointer;
 }
 
-/* media queries */
-@media only screen and (max-width: 540px) {
-.nav{
-    width: 100vw;
-    padding: 24px 16px;
-}
-
-.nav img{
-    width: 24px;
-}
-
-
-.nav-title{
-    font-size: 24px;
-}
-}
-
 /* new select */
 .select {
     position: relative;
@@ -222,4 +205,25 @@ body{
     border: 1px solid;
     border-color: var(--purple-light);
     transition: 0.4s ease-in-out;
+  }
+
+  /* media queries */
+@media only screen and (max-width: 540px) {
+  .nav{
+      width: 100vw;
+      padding: 24px 16px;
+  }
+  
+  .nav img{
+      width: 24px;
+  }
+  
+  
+  .nav-title{
+      font-size: 24px;
+  }
+
+  .select .selectBtn{
+    width: 100%;
+  }
   }
