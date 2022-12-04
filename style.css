@@ -90,36 +90,6 @@ body{
   align-items: center;
   gap: 24px;
 }
-/* #coinsSelect{
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 24px;
-    gap: 12px;
-    width: 480px;
-    font-family: 'Satoshi';
-    font-style: normal;
-    font-weight: 900;
-    font-size: 24px;
-    color: var(--text-light);
-    border-radius: 24px;
-    background-color: #ffffff05;
-    
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    -ms-appearance: none;
-    
-    background-image: url(./assets/material-symbols_arrow-drop-down.svg);
-    background-repeat: no-repeat;
-    background-size: 24px;
-    background-position: right;
-    background-origin: content-box;
-
-    cursor: pointer;
-} */
 
 /* new select */
 .select {
