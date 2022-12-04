@@ -143,10 +143,9 @@
     option.forEach(a => {
         a.addEventListener('click', b => {
             b.target.parentElement.classList.remove('toggle');
-            
             const parent = b.target.closest('.select').children[0];
             parent.setAttribute('data-type', b.target.getAttribute('data-type'));
-            parent.innerText = b.target.innerText;
+            parent.innerHTML = b.target.innerHTML;
         })
     })
 </script>
