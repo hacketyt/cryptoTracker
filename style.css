@@ -140,8 +140,7 @@ body{
     background-size: 24px;
     background-position: right;
     background-origin: content-box;
-    border: 1px solid;
-    border-color: #EFE8FF00;
+    border: 1px solid #efe8ff00;
   }
   .select .selectBtn:after {
     
@@ -152,8 +151,8 @@ body{
     height: 6px;
     -webkit-transform: translateY(-50%) rotate(45deg);
             transform: translateY(-50%) rotate(45deg);
-    border-right: 2px solid #666;
-    border-bottom: 2px solid #666;
+    /* border-right: 2px solid #666;
+    border-bottom: 2px solid #666; */
     transition: 0.2s ease;
   }
   .select .selectBtn.toggle {
@@ -222,7 +221,10 @@ body{
   .nav-title{
       font-size: 24px;
   }
-
+  .wrapper{
+    width: 100vw;
+    padding: 16px;
+  }
   .select .selectBtn{
     width: 100%;
   }

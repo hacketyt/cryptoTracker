@@ -34,43 +34,7 @@
     <!-- CONTENT -->
     <section class="main-content">
         <!-- dropdown -->
-        <div>
-            <!-- onchange to chnage data when selected value changes -->
-            <!-- <select id="coinsSelect" onchange="getData(this)">
-                <option value="" disabled selected>Select a coin</option>
-                <option value="bitcoin">Bitcoin</option>
-                <option value="ethereum">Ethereum</option>
-                <option value="tether">Tether</option>
-                <option value="cardano">Cardano</option>
-                <option value="solana">Solana</option>
-                <option value="dogecoin">Doge</option>
-            </select>
-            <table class="table table-striped table-bordered">
-                <tr>
-                    <td class="">Name</td>
-                    <td id="name" class=""></td>
-                </tr>
-                <tr>
-                    <td class="">Price</td>
-                    <td class="" id="price"></td>
-                </tr>
-                <tr>
-                    <td class="">Volume</td>
-                    <td class="" id="volume"></td>
-                </tr>
-                <tr>
-                    <td class="">Change (24 Hrs)</td>
-                    <td class="" id="change1d"></td>
-                </tr>
-                <tr>
-                    <td class="">Last Refresh</td>
-                    <td class="" id="last"></td>
-                </tr>
-                <tr>
-                    <td class="">Refresh in</td>
-                    <td class="" id="refresh"></td>
-                </tr>
-            </table> -->
+        <div class="wrapper">
             <div class="select">
                 <div class="selectBtn" data-type="firstOption">Select</div>
                 <div class="selectDropdown">
@@ -109,13 +73,13 @@
                     <td class="" id="refresh"></td>
                 </tr>
             </table>
-
-
         </div>
     </section>
 
     
 </body>
+
+<!-- script for cusotom select -->
 <script>const select = document.querySelectorAll('.selectBtn');
     const option = document.querySelectorAll('.option');
     let index = 1;
@@ -135,7 +99,8 @@
             parent.setAttribute('data-type', b.target.getAttribute('data-type'));
             parent.innerText = b.target.innerText;
         })
-    })</script>
+    })
+</script>
 
 <script type="text/javascript">
     // funciton to fetch data
