@@ -36,30 +36,30 @@
         <!-- dropdown -->
         <div class="wrapper">
             <div class="select">
-                <div class="selectBtn" data-type="" onclick="getData()">Select</div>
+                <div class="selectBtn" id="selectBtn" data-type="" onclick="getData()">Select</div>
                 <div class="selectDropdown">
                     <div class="option" data-type="bitcoin">
                         <img src="./assets/bitcoin.svg" height="24px" alt="bitcoin-logo">
                         Bitcoin
                     </div>
                     <div class="option" data-type="ethereum">
-                        <img src="./assets/ethereum.svg" height="24px" alt="bitcoin-logo">
+                        <img src="./assets/ethereum.svg" height="24px" alt="ethereum-logo">
                         Ethereum
                     </div>
                     <div class="option" data-type="tether">
-                        <img src="./assets/tether.svg" height="24px" alt="bitcoin-logo">
+                        <img src="./assets/tether.svg" height="24px" alt="tether-logo">
                         Tether
                     </div>
                     <div class="option" data-type="cardano">
-                        <img src="./assets/cardano.svg" height="24px" alt="bitcoin-logo">
+                        <img src="./assets/cardano.svg" height="24px" alt="cardano-logo">
                         Cardano
                     </div>
                     <div class="option" data-type="solana">
-                        <img src="./assets/solana.svg" width="24px" alt="bitcoin-logo">
+                        <img src="./assets/solana.svg" width="24px" alt="solana-logo">
                         Solana
                     </div>
                     <div class="option" data-type="dogecoin">
-                        <img src="./assets/dogecoin.svg" height="24px" alt="bitcoin-logo">
+                        <img src="./assets/dogecoin.svg" height="24px" alt="dogecoin-logo">
                         Dogecoin
                     </div>
                 </div>
@@ -85,12 +85,12 @@
                 <div class="time-data">
                     <div class="refresh-data">
                         Last Refresh
-                        <span id="last">3/11/2022 12:42:31 AM </span>
+                        <span id="last">-</span>
                     </div>
                     <div class="refresh-data">
                         <img src="./assets/uis_refresh.svg" alt="refresh-icon">
                         Next Refresh in
-                        <span id="refersh">30 Seconds</span>
+                        <span id="refresh">-</span>
                     </div>
                 </div>
             </div>
@@ -124,13 +124,14 @@
     })
 </script>
 
+<!-- script for fetching data -->
 <script type="text/javascript">
     // funciton to fetch data
     function getData() {
         if (upd) {
             clearInterval(upd);
         }
-        let coin = selectBtn.[data-type];
+        let coin = document.getElementById("selectBtn").getAttribute("data-type");
         fetchApi(coin);
         counter();
     }
@@ -147,7 +148,7 @@
             success: (data) => {
                 console.log(data.coin);
                 let date = new Date();
-                document.getElementById('name').innerHTML = `<img height="20" src="${data.coin.icon}">&nbsp${data.coin.name} (${data.coin.symbol})`;
+                // document.getElementById('name').innerHTML = `<img height="20" src="${data.coin.icon}">&nbsp${data.coin.name} (${data.coin.symbol})`;
                 //added toFixed(3) to round off to 3 decimal places
                 document.getElementById('price').innerHTML = '₹' + data.coin.price.toFixed(3);
                 document.getElementById('volume').innerHTML = data.coin.volume.toFixed(3);
@@ -155,9 +156,9 @@
                 change1d.innerHTML = `<b>${data.coin.priceChange1d}</b>`;
                 document.getElementById('last').innerHTML = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} &nbsp; ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} `;
                 if (data.coin.priceChange1d >= 0) {
-                    change1d.style.color = "green";
+                    change1d.style.color = "rgb(120, 214, 101)";
                 } else {
-                    change1d.style.color = "red";
+                    change1d.style.color = "rgb(214, 101, 101)";
                 }
             },
             error: (error) => {
@@ -192,87 +193,5 @@
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"
     integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous">
 </script>
-
-<!-- custom select -->
-<script>
-    var x, i, j, l, ll, selElmnt, a, b, c;
-    /*look for any elements with the class "custom-select":*/
-    x = document.getElementsByClassName("custom-select");
-    l = x.length;
-    for (i = 0; i < l; i++) {
-      selElmnt = x[i].getElementsByTagName("select")[0];
-      ll = selElmnt.length;
-      /*for each element, create a new DIV that will act as the selected item:*/
-      a = document.createElement("DIV");
-      a.setAttribute("class", "select-selected");
-      a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
-      x[i].appendChild(a);
-      /*for each element, create a new DIV that will contain the option list:*/
-      b = document.createElement("DIV");
-      b.setAttribute("class", "select-items select-hide");
-      for (j = 1; j < ll; j++) {
-        /*for each option in the original select element,
-        create a new DIV that will act as an option item:*/
-        c = document.createElement("DIV");
-        c.innerHTML = selElmnt.options[j].innerHTML;
-        c.addEventListener("click", function(e) {
-            /*when an item is clicked, update the original select box,
-            and the selected item:*/
-            var y, i, k, s, h, sl, yl;
-            s = this.parentNode.parentNode.getElementsByTagName("select")[0];
-            sl = s.length;
-            h = this.parentNode.previousSibling;
-            for (i = 0; i < sl; i++) {
-              if (s.options[i].innerHTML == this.innerHTML) {
-                s.selectedIndex = i;
-                h.innerHTML = this.innerHTML;
-                y = this.parentNode.getElementsByClassName("same-as-selected");
-                yl = y.length;
-                for (k = 0; k < yl; k++) {
-                  y[k].removeAttribute("class");
-                }
-                this.setAttribute("class", "same-as-selected");
-                break;
-              }
-            }
-            h.click();
-        });
-        b.appendChild(c);
-      }
-      x[i].appendChild(b);
-      a.addEventListener("click", function(e) {
-          /*when the select box is clicked, close any other select boxes,
-          and open/close the current select box:*/
-          e.stopPropagation();
-          closeAllSelect(this);
-          this.nextSibling.classList.toggle("select-hide");
-          this.classList.toggle("select-arrow-active");
-        });
-    }
-    function closeAllSelect(elmnt) {
-      /*a function that will close all select boxes in the document,
-      except the current select box:*/
-      var x, y, i, xl, yl, arrNo = [];
-      x = document.getElementsByClassName("select-items");
-      y = document.getElementsByClassName("select-selected");
-      xl = x.length;
-      yl = y.length;
-      for (i = 0; i < yl; i++) {
-        if (elmnt == y[i]) {
-          arrNo.push(i)
-        } else {
-          y[i].classList.remove("select-arrow-active");
-        }
-      }
-      for (i = 0; i < xl; i++) {
-        if (arrNo.indexOf(i)) {
-          x[i].classList.add("select-hide");
-        }
-      }
-    }
-    /*if the user clicks anywhere outside the select box,
-    then close all select boxes:*/
-    document.addEventListener("click", closeAllSelect);
-    </script>
 
 </html>
