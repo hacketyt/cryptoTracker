@@ -36,7 +36,7 @@
         <!-- dropdown -->
         <div class="wrapper">
             <div class="select">
-                <div class="selectBtn" data-type="firstOption">Select</div>
+                <div class="selectBtn" data-type="" onclick="getData()" >Select</div>
                 <div class="selectDropdown">
                     <div class="option" data-type="bitcoin">Bitcoin</div>
                     <div class="option" data-type="ethereum">Ethereum</div>
@@ -47,7 +47,26 @@
                 </div>
             </div>
 
-            <table class="table table-striped table-bordered">
+            <div class="fetched-data">
+                <div class="data-pill">
+                    Name
+                    <span id="name"><span style="color:#ffffff55">Select a coin</span></span>
+                </div>
+                <div class="data-pill">
+                    Price per coin
+                    <span id="Price"><span style="color:#ffffff55">-</span></span>
+                </div>
+                <div class="data-pill">
+                    Available Supply
+                    <span id="name"><span style="color:#ffffff55">-</span></span>
+                </div>
+                <div class="data-pill">
+                    Change (in last 24hrs)
+                    <span id="name"><span style="color:#ffffff55">-</span></span>
+                </div>
+            </div>
+
+            <!-- <table>
                 <tr>
                     <td class="">Name</td>
                     <td id="name" class=""></td>
@@ -72,7 +91,7 @@
                     <td class="">Refresh in</td>
                     <td class="" id="refresh"></td>
                 </tr>
-            </table>
+            </table> -->
         </div>
     </section>
 
@@ -104,11 +123,11 @@
 
 <script type="text/javascript">
     // funciton to fetch data
-    function getData(selectBtn) {
+    function getData() {
         if (upd) {
             clearInterval(upd);
         }
-        let coin = selectBtn.data-type;
+        let coin = selectBtn.[data-type];
         fetchApi(coin);
         counter();
     }
