@@ -23,7 +23,6 @@ body{
     width: 100vw;;
     color: #EFE8FF;
     background: linear-gradient(180deg, #212121 0%, #322157 100%);
-
     display: flex;
     flex-direction: column;
     position: relative;
@@ -148,6 +147,8 @@ body{
     background-position: right;
     background-origin: content-box;
     border: 1px solid #efe8ff00;
+    transition: 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+
   }
   /* .select .selectBtn:after {
     
@@ -180,23 +181,26 @@ body{
     font-size: 24px;
     color: var(--text-light);
     background-color: #ffffff05;
-    backdrop-filter: blur(18px);
+    backdrop-filter: blur(24px);
     border-radius: 24px;
     -webkit-transform: scale(1, 0);
             transform: scale(1, 0);
     -webkit-transform-origin: top center;
             transform-origin: top center;
     visibility: hidden;
-    transition: 0.2s ease;
-
+    transition: 0.3s ease-out;
   }
   .select .selectDropdown .option {
     padding: 12px;
     box-sizing: border-box;
     cursor: pointer;
+    border-left: 2px solid #d1bff800;
+    transition: 0.1s ease-out;
   }
   .select .selectDropdown .option:hover {
-    /* background: #f8f8f8; */
+    border-left: 2px solid #d1bff896;
+    transition: 0.1s ease-out;
+
   }
   .select .selectDropdown.toggle {
     visibility: visible;
@@ -208,8 +212,10 @@ body{
   .select .selectBtn:hover{
     border: 1px solid;
     border-color: var(--purple-light);
-    transition: 0.4s ease-in-out;
+    transition: 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
   }
+
+
 .fetched-data{
   display: flex;
   flex-direction: column;
@@ -221,7 +227,7 @@ body{
   color: var(--text-light);
   background: #ffffff03;
   padding: 12px 24px;
-  font-size: 18px;
+  font-size: 16px;
 
   display: flex;
   flex-direction: row;
@@ -230,6 +236,30 @@ body{
 
   border-radius: 24px;
 }
+
+.data-pill span{
+  font-size: 18px;
+}
+
+.time-data{
+  display: flex;
+  flex: row;
+  justify-content: space-between;
+}
+
+.refresh-data{
+  font-size: 12px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: var(--purple-muted);
+  gap: 4px;
+}
+  .refresh-data span{
+    color: var(--purple-light);
+    font-size: inherit;
+    font-weight: 700;
+  }
   /* media queries */
 @media only screen and (max-width: 540px) {
   .nav{
@@ -255,4 +285,8 @@ body{
   .select .selectBtn{
     width: 100%;
   }
+  .select .selectDropdown{
+    width: 100%;
+  }
+
   }
