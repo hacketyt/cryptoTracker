@@ -191,6 +191,9 @@ body{
     transition: 0.3s ease-out;
   }
   .select .selectDropdown .option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
     padding: 12px;
     box-sizing: border-box;
     cursor: pointer;
@@ -236,11 +239,9 @@ body{
 
   border-radius: 24px;
 }
-
-.data-pill span{
-  font-size: 18px;
-}
-
+  .data-pill span{
+    font-size: 18px;
+  }
 .time-data{
   display: flex;
   flex: row;
