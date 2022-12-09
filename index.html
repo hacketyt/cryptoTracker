@@ -99,8 +99,14 @@
             </div>
 
 
-        </div>
+        </div>  
+        
+        
+
     </section>
+    <div class="row">
+        <div id="videoDiv"></div>
+    </div>
 
     
 </body>
@@ -185,12 +191,14 @@
                 document.getElementById('volume').innerHTML = data.coin.volume.toFixed(3);
                 let change1d = document.getElementById('change1d');
                 change1d.innerHTML = `<b>${data.coin.priceChange1d}</b>`;
-                document.getElementById('last').innerHTML = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} &nbsp; ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} `;
+                document.getElementById('last').innerHTML = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()} &nbsp; ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} `;
                 if (data.coin.priceChange1d >= 0) {
                     change1d.style.color = "rgb(120, 214, 101)";
                 } else {
                     change1d.style.color = "rgb(214, 101, 101)";
                 }
+
+                addVideo(coin);
             },
             error: (error) => {
                 console.log(error);
@@ -202,8 +210,42 @@
 
     fetchApi(globalCoin);
 
-
+    function addVideo(coin){
+        $.ajax({
+        url:"https://list.ly/api/v4/search/video?q="+coin+"+cryptocurrency",
+        type: "GET",
+        async: false,
+        dataType: 'json',
+        success: (data) => {
+            console.log(data);
+            let videoDiv="";
+            let count=0;
+            $.each(data.results,(key,value)=>{
+                count++;
+                if(count>5) return;
+                // console.log(value);if (data.video != undefined && data.video != "") {
+                    let video_play_link = "";
+                    if (value.url.search('embed') == -1) {
+                        video_play_link = value.url.replace('/watch?v=', /embed/);
+                    } else {
+                        return;
+                    }
+                    console.log(video_play_link)
+                
+                videoDiv+='<iframe height="255" style="border-radius: 10px;" src="'+video_play_link+'"></iframe>'+value.name;
+                
+            });
+            // console.log(videoDiv);
+            $("#videoDiv").html(videoDiv);
+        },
+        error:(data)=>{
+            console.log(data);
+        }
+    });
         
+    }
+
+ 
     
 </script>
 
