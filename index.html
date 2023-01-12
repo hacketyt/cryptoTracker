@@ -8,12 +8,14 @@
     <title>Crypto Tracker</title>
     <!-- added fonts -->
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,500&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;900&display=swap" rel="stylesheet">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-JRGB78MPJC"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+        function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'G-JRGB78MPJC');
     </script>
@@ -36,7 +38,7 @@
         <!-- dropdown -->
         <div class="wrapper">
             <div class="select">
-                <div class="selectBtn" id="selectBtn" data-type="bitcoin" >
+                <div class="selectBtn" id="selectBtn" data-type="bitcoin">
                     <img src="./assets/bitcoin.svg" height="24px" alt="bitcoin-logo">
                     Bitcoin
                 </div>
@@ -97,29 +99,25 @@
                     </div>
                 </div>
             </div>
-
-
-        </div>  
-        
-        
-
+        </div>
     </section>
-    <div class="row">
+    <!-- <div class="yt-content">
         <div id="videoDiv"></div>
-    </div>
+    </div> -->
 
-    
+
+
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"
     integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous">
-</script>
+    </script>
 
 <!-- script for cusotom select -->
 <script>
     const select = document.querySelectorAll('.selectBtn');
     const option = document.querySelectorAll('.option');
     let index = 1;
-    
+
     select.forEach(a => {
         a.addEventListener('click', b => {
             const next = b.target.nextElementSibling;
@@ -140,28 +138,28 @@
 
 <!-- script for fetching data -->
 <script type="text/javascript">
-    var globalCoin='bitcoin';
-    var count=0;
+    var globalCoin = 'bitcoin';
+    var count = 0;
     var timer;
-    function startTimer(){
+    function startTimer() {
         clearInterval(timer);
-        timer = setInterval(()=>{
-            if(count<30)
+        timer = setInterval(() => {
+            if (count < 30)
                 document.getElementById('refresh').innerHTML = `${30 - count++} second`;
-            else{
-                setTimeout(()=>{
-                fetchApi(globalCoin)
-                
-            },5);
-            document.getElementById('price').innerHTML = '-';
-            document.getElementById('volume').innerHTML = '-';
-            document.getElementById('last').innerHTML = '-';
-            change1d.innerHTML = '-';
-            document.getElementById('refresh').innerHTML = '-';
+            else {
+                setTimeout(() => {
+                    fetchApi(globalCoin)
+
+                }, 5);
+                document.getElementById('price').innerHTML = '-';
+                document.getElementById('volume').innerHTML = '-';
+                document.getElementById('last').innerHTML = '-';
+                change1d.innerHTML = '-';
+                document.getElementById('refresh').innerHTML = '-';
             }
-                
-        },1000);
-        
+
+        }, 1000);
+
     }
 
     // funciton to fetch data
@@ -172,7 +170,7 @@
 
 
     function fetchApi(coin) {
-        count=0;
+        count = 0;
         startTimer();
         $.ajax({
             url: `https://api.coinstats.app/public/v1/coins/${coin}?currency=INR`,
@@ -181,17 +179,17 @@
             dataType: 'json',
             success: (data) => {
                 console.log(data.coin);
-                
+
                 let date = new Date();
                 // document.getElementById('name').innerHTML = `<img height="20" src="${data.coin.icon}">&nbsp${data.coin.name} (${data.coin.symbol})`;
                 //added toFixed(3) to round off to 3 decimal places
-                
-                
+
+
                 document.getElementById('price').innerHTML = '₹' + data.coin.price.toFixed(3);
                 document.getElementById('volume').innerHTML = data.coin.volume.toFixed(3);
                 let change1d = document.getElementById('change1d');
                 change1d.innerHTML = `<b>${data.coin.priceChange1d}</b>`;
-                document.getElementById('last').innerHTML = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()} &nbsp; ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} `;
+                document.getElementById('last').innerHTML = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} &nbsp; ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} `;
                 if (data.coin.priceChange1d >= 0) {
                     change1d.style.color = "rgb(120, 214, 101)";
                 } else {
@@ -210,20 +208,20 @@
 
     fetchApi(globalCoin);
 
-    function addVideo(coin){
+    function addVideo(coin) {
         $.ajax({
-        url:"https://list.ly/api/v4/search/video?q="+coin+"+cryptocurrency",
-        type: "GET",
-        async: false,
-        dataType: 'json',
-        success: (data) => {
-            console.log(data);
-            let videoDiv="";
-            let count=0;
-            $.each(data.results,(key,value)=>{
-                count++;
-                if(count>5) return;
-                // console.log(value);if (data.video != undefined && data.video != "") {
+            url: "https://list.ly/api/v4/search/video?q=" + coin + " latest news",
+            type: "GET",
+            async: false,
+            dataType: 'json',
+            success: (data) => {
+                console.log(data);
+                let videoDiv = "";
+                let count = 0;
+                $.each(data.results, (key, value) => {
+                    count++;
+                    if (count > 5) return;
+                    // console.log(value);if (data.video != undefined && data.video != "") {
                     let video_play_link = "";
                     if (value.url.search('embed') == -1) {
                         video_play_link = value.url.replace('/watch?v=', /embed/);
@@ -231,22 +229,22 @@
                         return;
                     }
                     console.log(video_play_link)
-                
-                videoDiv+='<iframe height="255" style="border-radius: 10px;" src="'+video_play_link+'"></iframe>'+value.name;
-                
-            });
-            // console.log(videoDiv);
-            $("#videoDiv").html(videoDiv);
-        },
-        error:(data)=>{
-            console.log(data);
-        }
-    });
-        
+
+                    videoDiv += '<iframe style="width:480px;height:270px;" src="' + video_play_link + '"></iframe><br>' + value.name + '<br>';
+
+                });
+                // console.log(videoDiv);
+                $("#videoDiv").html(videoDiv);
+            },
+            error: (data) => {
+                console.log(data);
+            }
+        });
+
     }
 
- 
-    
+
+
 </script>
 
 
