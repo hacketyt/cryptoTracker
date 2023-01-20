@@ -30,11 +30,28 @@
             <img src="./assets/mingcute_copper-coin-fill.svg" alt="demo-logo">
             <h1 class="nav-title">COINTRACK</h1>
         </div>
-        <a href="#" id="teamBtn">Team</a>
+        <button id="teamBtn" onclick="showPopup()">Team</buuton>
     </div>
 
     <!-- CONTENT -->
     <section class="main-content">
+        <!-- pop-up -->
+        <div class="pop-up show" id="pop-up">
+            <h1>Our Team</h1>
+            <div class="item">
+                <span>Reeshu Raj</span>
+                <span>192233</span>
+            </div>
+            <div class="item">
+                <span>Priya Kumari Sonar</span>
+                <span>192233</span>
+            </div>
+            <div class="item">
+                <span>Som Raj</span>
+                <span>192244</span>
+            </div>
+        </div>
+
         <!-- dropdown -->
         <div class="wrapper">
             <div class="select">
@@ -69,7 +86,7 @@
                     </div>
                 </div>
             </div>
-
+            
             <div class="fetched-data">
                 <!-- <div class="data-pill">
                     Name
@@ -101,6 +118,7 @@
             </div>
         </div>
     </section>
+
     <!-- <div class="yt-content">
         <div id="videoDiv"></div>
     </div> -->
@@ -208,40 +226,44 @@
 
     fetchApi(globalCoin);
 
-    function addVideo(coin) {
-        $.ajax({
-            url: "https://list.ly/api/v4/search/video?q=" + coin + " latest news",
-            type: "GET",
-            async: false,
-            dataType: 'json',
-            success: (data) => {
-                console.log(data);
-                let videoDiv = "";
-                let count = 0;
-                $.each(data.results, (key, value) => {
-                    count++;
-                    if (count > 5) return;
-                    // console.log(value);if (data.video != undefined && data.video != "") {
-                    let video_play_link = "";
-                    if (value.url.search('embed') == -1) {
-                        video_play_link = value.url.replace('/watch?v=', /embed/);
-                    } else {
-                        return;
-                    }
-                    console.log(video_play_link)
-
-                    videoDiv += '<iframe style="width:480px;height:270px;" src="' + video_play_link + '"></iframe><br>' + value.name + '<br>';
-
-                });
-                // console.log(videoDiv);
-                $("#videoDiv").html(videoDiv);
-            },
-            error: (data) => {
-                console.log(data);
-            }
-        });
-
+    function showPopup(){
+        document.getElementsById('pop-up').classList.toggle('show');
     }
+
+    // function addVideo(coin) {
+    //     $.ajax({
+    //         url: "https://list.ly/api/v4/search/video?q=" + coin + " latest news",
+    //         type: "GET",
+    //         async: false,
+    //         dataType: 'json',
+    //         success: (data) => {
+    //             console.log(data);
+    //             let videoDiv = "";
+    //             let count = 0;
+    //             $.each(data.results, (key, value) => {
+    //                 count++;d
+    //                 if (count > 5) return;
+    //                 // console.log(value);if (data.video != undefined && data.video != "") {
+    //                 let video_play_link = "";
+    //                 if (value.url.search('embed') == -1) {
+    //                     video_play_link = value.url.replace('/watch?v=', /embed/);
+    //                 } else {
+    //                     return;
+    //                 }
+    //                 console.log(video_play_link)
+
+    //                 videoDiv += '<iframe style="width:480px;height:270px;" src="' + video_play_link + '"></iframe><br>' + value.name + '<br>';
+
+    //             });
+    //             // console.log(videoDiv);
+    //             $("#videoDiv").html(videoDiv);
+    //         },
+    //         error: (data) => {
+    //             console.log(data);
+    //         }
+    //     });
+
+    // }
 
 
 
