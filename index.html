@@ -37,7 +37,7 @@
             </button>
             <!-- pop-up -->
             <div class="pop-up" id="pop-up">
-                <button id="btnClose">Close<img src="./assets/material-symbols_close.svg" alt="close-button"></button>
+                <button id="btnClose"><img src="./assets/material-symbols_close.svg" alt="close-button"></button>
                 <h1>Our Team</h1>
                 <div class="item">
                     <span>Reeshu Raj</span>
@@ -136,16 +136,17 @@
 
 <script>
     const element = document.querySelector('.pop-up');
+
     document.querySelector('#teamBtn').addEventListener('click', () => {
         if (element.style.visibility == 'visible')
             element.style.visibility = 'hidden';
         else
             element.style.visibility = 'visible';
     });
-    // function showPopup(){
-    //     alert("work");
-    //     document.getElementsById('pop-up').style.visibility = "hidden";
-    // }
+
+    document.querySelector('#btnClose').addEventListener('click', () => {
+        element.style.visibility = 'hidden';
+    });
 </script>
 
 

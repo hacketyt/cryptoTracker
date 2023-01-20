@@ -8,7 +8,9 @@
   font-weight: 500;
   box-sizing: border-box;
 }
-
+button{
+  cursor: pointer;
+}
 :root {
   --purple-light: #D1BFF8;
   --text-light: #EFE8FF;
@@ -259,7 +261,7 @@ body {
 
 /* pop-up */
 .pop-up {
-  /* visibility: hidden; */
+  visibility: hidden;
 
   position: absolute;
   top: 72px;
@@ -298,14 +300,16 @@ body {
 }
 
 #btnClose {
-  padding: 8px;
   position: absolute;
   right: 16px;
   top: 16px;
-  background-color: rgba(0, 0, 0, 0.226);
+  background-color: rgba(214, 82, 82, 0.15);
   color: #F8BFBF;
   display: flex;
+
   align-items: center;
+  border-radius: 824px;
+  padding: 8px;
 }
 
 #btnClose img {
