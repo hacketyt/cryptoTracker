@@ -8,9 +8,11 @@
   font-weight: 500;
   box-sizing: border-box;
 }
-button{
+
+button {
   cursor: pointer;
 }
+
 :root {
   --purple-light: #D1BFF8;
   --text-light: #EFE8FF;
@@ -172,6 +174,7 @@ body {
   font-size: 24px;
   color: var(--text-light);
   background-color: #ffffff05;
+  -webkit-backdrop-filter: blur(24px);
   backdrop-filter: blur(24px);
   border-radius: 24px;
   -webkit-transform: scale(1, 0);
@@ -236,6 +239,7 @@ body {
 
 .data-pill span {
   font-size: 18px;
+  color: #ffffff55;
 }
 
 .time-data {
@@ -272,11 +276,12 @@ body {
   flex-direction: column;
   justify-content: center;
   gap: 24px;
-  background-color: rgba(18, 1, 27, 0.2);
+  background-color: rgba(22, 15, 26, 0.2);
   color: rgb(255, 255, 255);
   padding: 64px;
   border-radius: 16px;
-  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
   z-index: 9999999999999999;
 }
 
