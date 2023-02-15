@@ -6,14 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crypto Tracker</title>
+    <link rel="icon" type="image/x-icon" href="/assets/mingcute_copper-coin-fill.svg">
     <!-- added fonts -->
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,500&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;900&display=swap" rel="stylesheet">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-JRGB78MPJC"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+        function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'G-JRGB78MPJC');
     </script>
@@ -28,15 +31,38 @@
             <img src="./assets/mingcute_copper-coin-fill.svg" alt="demo-logo">
             <h1 class="nav-title">COINTRACK</h1>
         </div>
-        <a href="#" id="teamBtn">Team</a>
+        <div>
+            <button id="teamBtn" onclick="showPopup()">
+                Team
+            </button>
+            <!-- pop-up -->
+            <div class="pop-up" id="pop-up">
+                <button id="btnClose"><img src="./assets/material-symbols_close.svg" alt="close-button"></button>
+                <h1>Our Team</h1>
+                <div class="item">
+                    <span>Reeshu Raj</span>
+                    <span>192233</span>
+                </div>
+                <div class="item">
+                    <span>Priya Kumari Sonar</span>
+                    <span>192233</span>
+                </div>
+                <div class="item">
+                    <span>Som Raj</span>
+                    <span>192244</span>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- CONTENT -->
     <section class="main-content">
+
+
         <!-- dropdown -->
         <div class="wrapper">
             <div class="select">
-                <div class="selectBtn" id="selectBtn" data-type="bitcoin" >
+                <div class="selectBtn" id="selectBtn" data-type="bitcoin">
                     <img src="./assets/bitcoin.svg" height="24px" alt="bitcoin-logo">
                     Bitcoin
                 </div>
@@ -69,21 +95,17 @@
             </div>
 
             <div class="fetched-data">
-                <!-- <div class="data-pill">
-                    Name
-                    <span id="name"><span style="color:#ffffff55">Select a coin</span></span>
-                </div> -->
                 <div class="data-pill">
                     Price per coin
-                    <span id="price"><span style="color:#ffffff55">-</span></span>
+                    <span id="price"><span>-</span></span>
                 </div>
                 <div class="data-pill">
                     Available Supply
-                    <span id="volume"><span style="color:#ffffff55">-</span></span>
+                    <span id="volume"><span>-</span></span>
                 </div>
                 <div class="data-pill">
                     Change (last 24hrs)
-                    <span id="change1d"><span style="color:#ffffff55">-</span></span>
+                    <span id="change1d"><span>-</span></span>
                 </div>
                 <div class="time-data">
                     <div class="refresh-data">
@@ -97,29 +119,44 @@
                     </div>
                 </div>
             </div>
-
-
-        </div>  
-        
-        
-
+        </div>
     </section>
-    <div class="row">
-        <div id="videoDiv"></div>
-    </div>
 
-    
+    <!-- <div class="yt-content">
+        <div id="videoDiv"></div>
+    </div> -->
+
+
+
 </body>
-<script src="https://code.jquery.com/jquery-3.6.1.min.js"
-    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous">
+
+<script>
+    const element = document.querySelector('.pop-up');
+
+    document.querySelector('#teamBtn').addEventListener('click', () => {
+        if (element.style.visibility == 'visible')
+            element.style.visibility = 'hidden';
+        else
+            element.style.visibility = 'visible';
+    });
+
+    document.querySelector('#btnClose').addEventListener('click', () => {
+        element.style.visibility = 'hidden';
+    });
 </script>
 
+
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous">
+    </script>
+
 <!-- script for cusotom select -->
+
 <script>
     const select = document.querySelectorAll('.selectBtn');
     const option = document.querySelectorAll('.option');
     let index = 1;
-    
+
     select.forEach(a => {
         a.addEventListener('click', b => {
             const next = b.target.nextElementSibling;
@@ -140,28 +177,28 @@
 
 <!-- script for fetching data -->
 <script type="text/javascript">
-    var globalCoin='bitcoin';
-    var count=0;
+    var globalCoin = 'bitcoin';
+    var count = 0;
     var timer;
-    function startTimer(){
+    function startTimer() {
         clearInterval(timer);
-        timer = setInterval(()=>{
-            if(count<30)
+        timer = setInterval(() => {
+            if (count < 30)
                 document.getElementById('refresh').innerHTML = `${30 - count++} second`;
-            else{
-                setTimeout(()=>{
-                fetchApi(globalCoin)
-                
-            },5);
-            document.getElementById('price').innerHTML = '-';
-            document.getElementById('volume').innerHTML = '-';
-            document.getElementById('last').innerHTML = '-';
-            change1d.innerHTML = '-';
-            document.getElementById('refresh').innerHTML = '-';
+            else {
+                setTimeout(() => {
+                    fetchApi(globalCoin)
+
+                }, 5);
+                document.getElementById('price').innerHTML = '-';
+                document.getElementById('volume').innerHTML = '-';
+                document.getElementById('last').innerHTML = '-';
+                change1d.innerHTML = '-';
+                document.getElementById('refresh').innerHTML = '-';
             }
-                
-        },1000);
-        
+
+        }, 1000);
+
     }
 
     // funciton to fetch data
@@ -172,7 +209,7 @@
 
 
     function fetchApi(coin) {
-        count=0;
+        count = 0;
         startTimer();
         $.ajax({
             url: `https://api.coinstats.app/public/v1/coins/${coin}?currency=INR`,
@@ -181,17 +218,17 @@
             dataType: 'json',
             success: (data) => {
                 console.log(data.coin);
-                
+
                 let date = new Date();
                 // document.getElementById('name').innerHTML = `<img height="20" src="${data.coin.icon}">&nbsp${data.coin.name} (${data.coin.symbol})`;
                 //added toFixed(3) to round off to 3 decimal places
-                
-                
+
+
                 document.getElementById('price').innerHTML = '₹' + data.coin.price.toFixed(3);
                 document.getElementById('volume').innerHTML = data.coin.volume.toFixed(3);
                 let change1d = document.getElementById('change1d');
                 change1d.innerHTML = `<b>${data.coin.priceChange1d}</b>`;
-                document.getElementById('last').innerHTML = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()} &nbsp; ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} `;
+                document.getElementById('last').innerHTML = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} &nbsp; ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} `;
                 if (data.coin.priceChange1d >= 0) {
                     change1d.style.color = "rgb(120, 214, 101)";
                 } else {
@@ -210,43 +247,43 @@
 
     fetchApi(globalCoin);
 
-    function addVideo(coin){
-        $.ajax({
-        url:"https://list.ly/api/v4/search/video?q="+coin+"+cryptocurrency",
-        type: "GET",
-        async: false,
-        dataType: 'json',
-        success: (data) => {
-            console.log(data);
-            let videoDiv="";
-            let count=0;
-            $.each(data.results,(key,value)=>{
-                count++;
-                if(count>5) return;
-                // console.log(value);if (data.video != undefined && data.video != "") {
-                    let video_play_link = "";
-                    if (value.url.search('embed') == -1) {
-                        video_play_link = value.url.replace('/watch?v=', /embed/);
-                    } else {
-                        return;
-                    }
-                    console.log(video_play_link)
-                
-                videoDiv+='<iframe height="255" style="border-radius: 10px;" src="'+video_play_link+'"></iframe>'+value.name;
-                
-            });
-            // console.log(videoDiv);
-            $("#videoDiv").html(videoDiv);
-        },
-        error:(data)=>{
-            console.log(data);
-        }
-    });
-        
-    }
+    // function addVideo(coin) {
+    //     $.ajax({
+    //         url: "https://list.ly/api/v4/search/video?q=" + coin + " latest news",
+    //         type: "GET",
+    //         async: false,
+    //         dataType: 'json',
+    //         success: (data) => {
+    //             console.log(data);
+    //             let videoDiv = "";
+    //             let count = 0;
+    //             $.each(data.results, (key, value) => {
+    //                 count++;d
+    //                 if (count > 5) return;
+    //                 // console.log(value);if (data.video != undefined && data.video != "") {
+    //                 let video_play_link = "";
+    //                 if (value.url.search('embed') == -1) {
+    //                     video_play_link = value.url.replace('/watch?v=', /embed/);
+    //                 } else {
+    //                     return;
+    //                 }
+    //                 console.log(video_play_link)
 
- 
-    
+    //                 videoDiv += '<iframe style="width:480px;height:270px;" src="' + video_play_link + '"></iframe><br>' + value.name + '<br>';
+
+    //             });
+    //             // console.log(videoDiv);
+    //             $("#videoDiv").html(videoDiv);
+    //         },
+    //         error: (data) => {
+    //             console.log(data);
+    //         }
+    //     });
+
+    // }
+
+
+
 </script>
 
 
