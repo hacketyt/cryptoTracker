@@ -14,7 +14,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;900&display=swap" rel="stylesheet">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-JRGB78MPJC"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
@@ -121,22 +122,13 @@
                 </div>
             </div>
         </div>
+        <div class="yt-section">
+            <h3>Related Videos</h3>
+            <div class="yt-content">
+                <div id="videoDiv" class="row m-3"></div>
+            </div>
+        </div>
     </section>
-
-
-    <div class="yt-content">
-        
-        <div id="videoDiv" class="row m-3"></div>
-    
-    
-    </div>
-    
-
-    <!-- start -->
-
-    <!-- end -->
-
-
 </body>
 
 <script>
@@ -277,9 +269,9 @@
                         return;
                     }
                     console.log(video_play_link)
-                    videoDiv+='<div class="col-12 col-md-4 p-3">';
-                    videoDiv += '<iframe style="width:100%;height:270px;" src="' + video_play_link + '"></iframe><br>' + value.name + '<br>';
-                    videoDiv+='</div>';
+                    videoDiv += '<div class="col-12 col-md-4 col-lg-3 p-3">';
+                    videoDiv += '<iframe style="width:100%;height:240px;" src="' + video_play_link + '"></iframe><br>' + value.name + '<br>';
+                    videoDiv += '</div>';
                 });
                 // console.log(videoDiv);
                 $("#videoDiv").html(videoDiv);
