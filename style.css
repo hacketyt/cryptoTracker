@@ -279,7 +279,8 @@ body {
   top: 72px;
   right: 0px;
   display: flex;
-  width: 640px;
+  width: 80vw;
+  max-width: 640px;
   height: auto;
   flex-direction: column;
   justify-content: center;
@@ -365,4 +366,14 @@ body {
     width: 100%;
   }
 
+  .pop-up{
+    width: 90vw;
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding: 24px;
+  }
+  
+  .yt-section h3{
+    font-size: 18px;
+  }
 }
