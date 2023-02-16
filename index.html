@@ -258,6 +258,8 @@
         });
 
     }
+
+    // gecko api
     function getGecko(coin) {
         $.ajax({
             url: `https://api.coingecko.com/api/v3/coins/${coin}?localization=false&tickers=false&community_data=false&developer_data=false&sparkline=false`,
