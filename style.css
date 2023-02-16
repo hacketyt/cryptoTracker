@@ -331,13 +331,13 @@ body {
   width: 18px;
 }
 .description{
-  padding: 48px 0px;
+  padding: 48px 0px 0px 0px;
 }
 #desc{
   font-size: 14px;
   color: #ffffffbd;
   width: 80vw;
-  height: 240px;
+  max-height: 240px;
   overflow-y: auto;
 }
 
