@@ -330,6 +330,16 @@ body {
   height: 18px;
   width: 18px;
 }
+.description{
+  padding: 48px 0px;
+}
+#desc{
+  font-size: 14px;
+  color: #ffffffbd;
+  width: 80vw;
+  height: 240px;
+  overflow-y: auto;
+}
 
 /* media queries */
 @media only screen and (max-width: 540px) {
@@ -375,5 +385,9 @@ body {
   
   .yt-section h3{
     font-size: 18px;
+  }
+  #desc{
+    width: 100%;
+    padding:0px 24px;
   }
 }
