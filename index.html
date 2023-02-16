@@ -125,6 +125,12 @@
                 </div>
             </div>
         </div>
+        <div class="description">
+            <h3>Description</h3>
+            <p id="desc">
+
+            </p>
+        </div>
         <div class="yt-section">
             <h3>Related Videos</h3>
             <div class="yt-content">
@@ -150,8 +156,9 @@
 </script>
 
 
-<script src="https://code.jquery.com/jquery-3.6.3.min.js"
-    integrity="sha256-ZwqZIVdD3iXNyGHbSYdsmWP//UBokj2FHAxKuSBKDSo=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous">
+    </script>
 
 <!-- script for cusotom select -->
 
@@ -221,7 +228,7 @@
             async: false,
             dataType: 'json',
             success: (data) => {
-                console.log(data.coin);
+                // console.log(data.coin);
 
                 let date = new Date();
                 // document.getElementById('name').innerHTML = `<img height="20" src="${data.coin.icon}">&nbsp${data.coin.name} (${data.coin.symbol})`;
@@ -240,7 +247,29 @@
                     change1d.style.color = "rgb(214, 101, 101)";
                 }
 
+                getGecko(coin);
                 addVideo(coin);
+
+            },
+            error: (error) => {
+                console.log(error);
+            }
+
+        });
+
+    }
+
+    // gecko api
+    function getGecko(coin) {
+        $.ajax({
+            url: `https://api.coingecko.com/api/v3/coins/${coin}?localization=false&tickers=false&community_data=false&developer_data=false&sparkline=false`,
+            type: "GET",
+            async: false,
+            dataType: 'json',
+            success: (data) => {
+                console.log(data);
+                let date = new Date();
+                document.getElementById('desc').innerHTML = data.description.en;
             },
             error: (error) => {
                 console.log(error);
@@ -259,7 +288,7 @@
             async: false,
             dataType: 'json',
             success: (data) => {
-                console.log(data);
+                // console.log(data);
                 let videoDiv = "";
                 let count = 0;
                 $.each(data.results, (key, value) => {
